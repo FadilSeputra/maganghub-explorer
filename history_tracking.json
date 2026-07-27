@@ -1,0 +1,72 @@
+[
+  {
+    "run": 1,
+    "label": "Scraping Awal (Baseline)",
+    "date": "2026-07-22",
+    "unique_jobs": 27902,
+    "applicants": 112450
+  },
+  {
+    "run": 2,
+    "label": "Scraping v2",
+    "date": "2026-07-23",
+    "unique_jobs": 25848,
+    "applicants": 122180
+  },
+  {
+    "run": 3,
+    "label": "Scraping v3 (Deduplicate)",
+    "date": "2026-07-24 01:00",
+    "unique_jobs": 22427,
+    "applicants": 129720
+  },
+  {
+    "run": 4,
+    "label": "Scraping v4 (Fix Pagination)",
+    "date": "2026-07-24 06:00",
+    "unique_jobs": 22427,
+    "applicants": 129747
+  },
+  {
+    "run": 5,
+    "label": "Scraping v4 (Update Siang)",
+    "date": "2026-07-24 14:00",
+    "unique_jobs": 19959,
+    "applicants": 145988
+  },
+  {
+    "run": 6,
+    "label": "Scraping v4 (Update Malam)",
+    "date": "2026-07-25 01:00",
+    "unique_jobs": 19269,
+    "applicants": 175142
+  },
+  {
+    "run": 7,
+    "label": "Scraping Terbaru (2026-07-25 23:08)",
+    "date": "2026-07-25 23:08",
+    "unique_jobs": 19568,
+    "applicants": 175142
+  },
+  {
+    "run": 8,
+    "label": "Scraping Terbaru (2026-07-27 15:44)",
+    "date": "2026-07-27 15:44",
+    "unique_jobs": 20400,
+    "applicants": 240856
+  },
+  {
+    "run": 9,
+    "label": "Scraping Terbaru (2026-07-27 23:41)",
+    "date": "2026-07-27 23:41",
+    "unique_jobs": 19078,
+    "applicants": 238174
+  },
+  {
+    "run": 10,
+    "label": "Scraping Terbaru (2026-07-27 23:41)",
+    "date": "2026-07-27 23:41",
+    "unique_jobs": 25651,
+    "applicants": 316934
+  }
+]

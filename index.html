@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MagangHub Explorer - 28.255 Lowongan Magang Resmi Kemnaker</title>
+  <meta name="description" content="Filter 28.255 lowongan magang resmi Kemnaker berdasarkan jurusan, lokasi, kuota, dan pendidikan." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="#" class="brand">
+        <div class="brand-icon"><i class="ri-briefcase-4-line"></i></div>
+        <div class="brand-title">MagangHub <span>Explorer</span></div>
+      </a>
+      <div style="display:flex; align-items:center; gap:0.75rem;">
+        <button id="btn-theme-toggle" class="btn-theme-toggle"><i class="ri-sun-line" id="theme-icon"></i> <span id="theme-text">Mode Siang</span></button>
+        <div class="nav-badge"><div class="pulse-dot"></div><span>100% Data Asli MagangHub Kemnaker</span></div>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container">
+    <header class="hero">
+      <div class="hero-tag"><i class="ri-shield-check-fill"></i> Data 100% Asli — Tidak Ada yang Dikarang</div>
+      <h1 class="hero-title">Filter <span>28.255 Lowongan Magang</span> Resmi Kemnaker</h1>
+      <p class="hero-subtitle">Cari berdasarkan nama posisi, perusahaan, jurusan, lokasi, dan tingkat pendidikan. Semua data langsung dari halaman resmi MagangHub.</p>
+    </header>
+
+    <section class="stats-grid" style="grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));gap:1rem;margin-bottom:1.5rem">
+      <div class="stat-card">
+        <div class="stat-icon cyan"><i class="ri-briefcase-line"></i></div>
+        <div class="stat-info">
+          <div class="value" id="stat-total-jobs">0</div>
+          <div class="label">Total Lowongan</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon purple"><i class="ri-user-follow-line"></i></div>
+        <div class="stat-info">
+          <div class="value" id="stat-total-applicants" style="color:var(--accent-purple)">0</div>
+          <div class="label">Total Calon Pelamar</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon green"><i class="ri-team-line"></i></div>
+        <div class="stat-info">
+          <div class="value" id="stat-total-quota" style="color:var(--accent-green)">0</div>
+          <div class="label">Total Kuota Kursi</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="search-box">
+      <div class="search-input-wrap">
+        <i class="ri-search-line"></i>
+        <input type="text" id="search-input" class="search-input" placeholder="Cari nama posisi atau nama perusahaan (misal: BNI, Telkom, Software Engineer, Marketing)..." />
+      </div>
+      <div class="filters-grid">
+        <div class="filter-group">
+          <label class="filter-label"><i class="ri-graduation-cap-line"></i> Jurusan</label>
+          <select id="filter-major" class="filter-select"><option value="">Semua Jurusan</option></select>
+        </div>
+        <div class="filter-group">
+          <label class="filter-label"><i class="ri-map-pin-line"></i> Lokasi</label>
+          <select id="filter-location" class="filter-select"><option value="">Semua Lokasi</option></select>
+        </div>
+        <div class="filter-group">
+          <label class="filter-label"><i class="ri-award-line"></i> Pendidikan</label>
+          <select id="filter-education" class="filter-select"><option value="">Semua Jenjang</option></select>
+        </div>
+        <div class="filter-group">
+          <label class="filter-label"><i class="ri-sort-desc"></i> Urutkan Kuota</label>
+          <select id="sort-by" class="filter-select">
+            <option value="">Default</option>
+            <option value="applicant-asc">🔥 Pelamar Tersedikit (Peluang Lolos Tinggi)</option>
+            <option value="applicant-desc">Pelamar Terbanyak</option>
+            <option value="quota-desc">Kuota Terbanyak</option>
+            <option value="quota-asc">Kuota Tersedikit</option>
+          </select>
+        </div>
+        <div class="filter-group filter-actions">
+          <button id="btn-reset" class="btn-reset"><i class="ri-refresh-line"></i> Reset</button>
+        </div>
+      </div>
+      <div class="pills-container">
+        <span class="pill-title">Cepat:</span>
+        <button class="pill active" data-filter="all">Semua</button>
+        <button class="pill" data-filter="cloud">☁️ Cloud & DevOps (879)</button>
+        <button class="pill" data-filter="informatika">Teknik Informatika</button>
+        <button class="pill" data-filter="manajemen">Manajemen</button>
+        <button class="pill" data-filter="akuntansi">Akuntansi</button>
+      </div>
+    </section>
+
+    <section class="results-section">
+      <div class="section-header">
+        <div class="results-count" id="results-count">Menampilkan <span>0</span> dari <span>0</span> Lowongan</div>
+      </div>
+      <div class="jobs-grid" id="jobs-grid"></div>
+    </section>
+  </main>
+
+  <div class="modal-overlay" id="modal-overlay">
+    <div class="modal-card">
+      <div class="modal-header">
+        <span style="font-size:.8rem;font-weight:700;color:var(--accent-cyan);text-transform:uppercase">Detail Lowongan Magang</span>
+        <button class="modal-close-btn" id="modal-close"><i class="ri-close-line"></i></button>
+      </div>
+      <div class="modal-body" id="modal-content"></div>
+    </div>
+  </div>
+
+  <script src="jobs.js?v=20260725_fixed"></script>
+  <script src="app.js?v=20260725_fixed"></script>
+</body>
+</html>
