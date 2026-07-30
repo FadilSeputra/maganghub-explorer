@@ -117,21 +117,31 @@
     </div>
   </div>
 
-  <!-- Modal Status Checker -->
+  <!-- Modal Status Checker (PantauLoker Style) -->
   <div class="modal-overlay" id="status-modal-overlay">
-    <div class="modal-card" style="max-width:550px">
+    <div class="modal-card" style="max-width:580px">
       <div class="modal-header">
-        <span style="font-size:.85rem;font-weight:700;color:var(--accent-purple);text-transform:uppercase"><i class="ri-user-search-line"></i> Cek Status Kelulusan & Seleksi</span>
+        <span style="font-size:.85rem;font-weight:700;color:var(--accent-purple);text-transform:uppercase"><i class="ri-user-search-line"></i> Cek Status & Riwayat Lamaran Perusahaan</span>
         <button class="modal-close-btn" id="status-modal-close"><i class="ri-close-line"></i></button>
       </div>
       <div class="modal-body" style="padding:1.5rem">
-        <p style="font-size:0.88rem;color:var(--text-sub);margin-bottom:1.25rem;line-height:1.5">
-          Masukkan alamat email terdaftar Anda di MagangHub Kemnaker untuk mengecek hasil verifikasi berkas & penerimaan magang:
+        <p style="font-size:0.88rem;color:var(--text-sub);margin-bottom:1rem;line-height:1.5">
+          Cek di mana saja calon pelamar melamar & status verifikasi penerimaan berdasarkan alamat email terdaftar:
         </p>
-        <div style="display:flex;gap:0.5rem;margin-bottom:1.25rem">
-          <input type="email" id="input-status-email" class="search-input" placeholder="Masukkan email terdaftar (misal: nenda@gmail.com)..." style="flex:1" />
-          <button id="btn-check-email-status" class="btn-apply" style="padding:0 1.25rem;border:none;cursor:pointer;background:linear-gradient(135deg,var(--accent-purple),#7c3aed)"><i class="ri-search-line"></i> Cek Status</button>
+
+        <div style="display:flex;flex-direction:column;gap:0.75rem;margin-bottom:1.25rem">
+          <div style="display:flex;gap:0.5rem">
+            <select id="select-status-batch" class="filter-select" style="flex:1;background:var(--bg-input)">
+              <option value="1">Batch 1 Tahun 2026 (Periode Juli - Agt 2026)</option>
+              <option value="2">Batch 2 Tahun 2025</option>
+            </select>
+          </div>
+          <div style="display:flex;gap:0.5rem">
+            <input type="email" id="input-status-email" class="search-input" placeholder="Ketik email pelamar (contoh: nenda@gmail.com)..." style="flex:1" />
+            <button id="btn-check-email-status" class="btn-apply" style="padding:0 1.25rem;border:none;cursor:pointer;background:linear-gradient(135deg,var(--accent-purple),#7c3aed)"><i class="ri-search-line"></i> Cek Status</button>
+          </div>
         </div>
+
         <div id="status-result-container"></div>
       </div>
     </div>
