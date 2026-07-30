@@ -336,6 +336,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Mock/Custom DB Records for Nenda & Demo Users
     const CUSTOM_DB = {
+      'adutya37@gmail.com': {
+        name: 'ADITYA',
+        nim: 'S1 Teknik Informatika / Sistem Informasi',
+        apps: [
+          {
+            title: 'IT Infrastructure Intern - Information Technology',
+            company: 'PT Bank Mandiri (Persero) Tbk',
+            status: 'ACCEPTED',
+            statusLabel: '🟢 DITERIMA / LOLOS SELEKSI BERKAS',
+            stage: 'Tahap Online Assessment & HR Review',
+            date: 'Rabu, 5 Agustus 2026 (14:00 WIB)',
+            note: 'Selamat! Berkas pendaftaran Anda dinyatakan LOLOS seleksi administrasi BUMN Bank Mandiri.'
+          },
+          {
+            title: 'Cloud Engineer Intern',
+            company: 'PT Paragon Technology And Innovation',
+            status: 'PENDING',
+            statusLabel: '🟡 SEDANG DIPROSES / VERIFIKASI BERKAS',
+            stage: 'Review Kualifikasi Berkas oleh HRD Paragon',
+            date: 'Estimasi Pengumuman: 1 - 5 Agustus 2026',
+            note: 'Berkas lamaran Anda sedang dalam tahap verifikasi kualifikasi tim Recruitment Paragon.'
+          }
+        ]
+      },
       'nendaseputra@gmail.com': {
         name: 'NENDA ALFADIL SEPUTRA',
         nim: 'S1 Teknik Informatika (Bangkit Cloud Cohort)',
