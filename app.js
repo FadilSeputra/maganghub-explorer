@@ -336,6 +336,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Mock/Custom DB Records for Nenda & Demo Users
     const CUSTOM_DB = {
+      'nendaseputra@gmail.com': {
+        name: 'NENDA ALFADIL SEPUTRA',
+        nim: 'S1 Teknik Informatika (Bangkit Cloud Cohort)',
+        apps: [
+          {
+            title: 'Solution Architect Intern',
+            company: 'PT Sinergi Informatika Semen Indonesia (SISI)',
+            status: 'ACCEPTED',
+            statusLabel: '🟢 DITERIMA / LOLOS SELEKSI BERKAS',
+            stage: 'Tahap Wawancara User & Direksi',
+            date: 'Senin, 3 Agustus 2026 (09:00 WIB)',
+            note: 'Selamat! Berkas kualifikasi S1 TI & Bangkit Cloud Anda dinyatakan LOLOS seleksi tahap I oleh tim Recruitment SISI.'
+          },
+          {
+            title: 'IT Application Delivery Intern - Information Technology',
+            company: 'PT Bank Mandiri (Persero) Tbk',
+            status: 'ACCEPTED',
+            statusLabel: '🟢 DITERIMA / LOLOS SELEKSI BERKAS',
+            stage: 'Tahap Online Assessment & HR Review',
+            date: 'Rabu, 5 Agustus 2026 (10:00 WIB)',
+            note: 'Selamat! Berkas Anda dinyatakan LOLOS verifikasi BUMN Bank Mandiri. Tautan tes assessment telah dikirim ke email.'
+          }
+        ]
+      },
       'nenda@gmail.com': {
         name: 'NENDA ALFADIL SEPUTRA',
         nim: 'S1 Teknik Informatika (Bangkit Cloud Cohort)',
