@@ -117,24 +117,46 @@
     </div>
   </div>
 
-  <!-- Modal Info & Verifikasi Status Real Kemnaker -->
+  <!-- Modal Info Portal Resmi & Timeline (100% Clean Data Integrity) -->
   <div class="modal-overlay" id="status-modal-overlay">
-    <div class="modal-card" style="max-width:650px">
+    <div class="modal-card" style="max-width:600px">
       <div class="modal-header">
-        <span style="font-size:.85rem;font-weight:700;color:var(--accent-purple);text-transform:uppercase"><i class="ri-shield-check-line"></i> Cek Status & Hasil Seleksi Real MagangHub</span>
+        <span style="font-size:.85rem;font-weight:700;color:var(--accent-cyan);text-transform:uppercase"><i class="ri-shield-check-line"></i> Timeline & Portal Resmi MagangHub</span>
         <button class="modal-close-btn" id="status-modal-close"><i class="ri-close-line"></i></button>
       </div>
       <div class="modal-body" style="padding:1.5rem">
-        <p style="font-size:0.88rem;color:var(--text-sub);margin-bottom:1rem;line-height:1.5">
-          Masukkan alamat email pelamar terdaftar di Kemnaker untuk melihat riwayat 3 pilihan lowongan, status penerimaan, dan verifikasi otomatis BUMN:
-        </p>
-
-        <div style="display:flex;gap:0.5rem;margin-bottom:1.25rem">
-          <input type="email" id="input-status-email" class="search-input" value="adutya37@gmail.com" placeholder="Ketik email terdaftar (contoh: adutya37@gmail.com)..." style="flex:1" />
-          <button id="btn-check-email-status" class="btn-apply" style="padding:0 1.25rem;border:none;cursor:pointer;background:linear-gradient(135deg,var(--accent-purple),#7c3aed)"><i class="ri-search-line"></i> Cek Status Real</button>
+        <div style="padding:1rem;background:rgba(34,211,238,0.08);border:1px solid rgba(34,211,238,0.2);border-radius:12px;margin-bottom:1.25rem;line-height:1.5;font-size:0.88rem;color:var(--text-sub)">
+          <div style="font-weight:700;color:var(--accent-cyan);margin-bottom:0.4rem;display:flex;align-items:center;gap:6px">
+            <i class="ri-lock-2-line"></i> Proteksi Data Pribadi (UU PDP)
+          </div>
+          Status kelulusan individu dilindungi oleh Kemnaker RI dan <strong>hanya dapat diakses melalui akun SSO Kemnaker Anda sendiri</strong>.
         </div>
 
-        <div id="status-result-container"></div>
+        <h4 style="font-size:0.95rem;font-weight:800;color:var(--text-primary);margin-bottom:0.75rem"><i class="ri-calendar-event-line"></i> Jadwal Seleksi Resmi MagangHub 2026</h4>
+        
+        <div style="display:flex;flex-direction:column;gap:0.75rem;margin-bottom:1.5rem">
+          <div style="background:var(--bg-body);border:1px solid var(--border-color);border-radius:10px;padding:0.85rem">
+            <div style="font-size:0.75rem;font-weight:700;color:var(--text-muted);margin-bottom:2px">FASE 2 (SELESAI)</div>
+            <div style="font-weight:700;color:var(--text-primary);font-size:0.9rem">Pendaftaran Peserta</div>
+            <div style="font-size:0.8rem;color:var(--text-sub)">14 Juli – 28 Juli 2026 (Telah Ditutup)</div>
+          </div>
+
+          <div style="background:rgba(167,139,250,0.1);border:1px solid rgba(167,139,250,0.3);border-radius:10px;padding:0.85rem">
+            <div style="font-size:0.75rem;font-weight:700;color:var(--accent-purple);margin-bottom:2px">FASE 3 (BERLANGSUNG SAAT INI)</div>
+            <div style="font-weight:700;color:var(--text-primary);font-size:0.9rem">Seleksi & Verifikasi Peserta oleh Perusahaan / BUMN</div>
+            <div style="font-size:0.8rem;color:var(--text-sub)">28 Juli – 5 Agustus 2026</div>
+          </div>
+
+          <div style="background:var(--bg-body);border:1px solid var(--border-color);border-radius:10px;padding:0.85rem">
+            <div style="font-size:0.75rem;font-weight:700;color:var(--accent-green);margin-bottom:2px">FASE 4 (PENGUMUMAN FINAL)</div>
+            <div style="font-weight:700;color:var(--text-primary);font-size:0.9rem">Seleksi Nasional & Pengumuman Peserta</div>
+            <div style="font-size:0.8rem;color:var(--text-sub)">6 Agustus – 8 Agustus 2026</div>
+          </div>
+        </div>
+
+        <a href="https://maganghub.kemnaker.go.id" target="_blank" rel="noopener" class="btn-apply" style="display:flex;align-items:center;justify-content:center;gap:6px;width:100%;padding:12px;font-size:0.9rem;text-decoration:none;border-radius:10px">
+          <i class="ri-external-link-line"></i> Buka Portal Resmi MagangHub Kemnaker
+        </a>
       </div>
     </div>
   </div>
@@ -144,9 +166,6 @@
     var btn = document.getElementById('btn-status-checker');
     var overlay = document.getElementById('status-modal-overlay');
     var closeBtn = document.getElementById('status-modal-close');
-    var checkBtn = document.getElementById('btn-check-email-status');
-    var emailInput = document.getElementById('input-status-email');
-    var resultDiv = document.getElementById('status-result-container');
 
     if (btn && overlay) {
       btn.addEventListener('click', function() { overlay.classList.add('active'); });
@@ -154,140 +173,6 @@
     if (closeBtn && overlay) {
       closeBtn.addEventListener('click', function() { overlay.classList.remove('active'); });
       overlay.addEventListener('click', function(e) { if (e.target === overlay) overlay.classList.remove('active'); });
-    }
-
-    if (checkBtn && emailInput) {
-      checkBtn.addEventListener('click', doCheck);
-      emailInput.addEventListener('keypress', function(e) { if (e.key === 'Enter') doCheck(); });
-    }
-
-    // Official Real Kemnaker Response Data Cache
-    var REAL_KEMNAKER_DATA = {
-      "adutya37@gmail.com": {
-        "email": "adutya37@gmail.com",
-        "total": 3,
-        "registrations": [
-          {
-            "id_peserta": "019f932f-57d2-71ae-bf6e-2c4b54032f31",
-            "tanggal_daftar": "2026-07-24T08:13:01.000000Z",
-            "status": { "id": 4, "nama": "Diterima di Perusahaan Lain" },
-            "posisi": { "nama": "IT Application Delivery Intern - Information Technology" },
-            "perusahaan": { "nama": "Perusahaan Perseroan (Persero) PT. Bank Mandiri", "lokasi": "KOTA ADM. JAKARTA SELATAN, DKI JAKARTA" }
-          },
-          {
-            "id_peserta": "019f9026-69a7-7314-9303-11553665fed8",
-            "tanggal_daftar": "2026-07-23T18:04:24.000000Z",
-            "status": { "id": 2, "nama": "Diterima" },
-            "posisi": { "nama": "Solution Architect Intern" },
-            "perusahaan": { "nama": "Sinergi Informatika Semen Indonesia", "lokasi": "KOTA ADM. JAKARTA SELATAN, DKI JAKARTA" }
-          },
-          {
-            "id_peserta": "019f8c14-2a79-70f5-a3b2-3ed521f6f2d1",
-            "tanggal_daftar": "2026-07-22T23:05:59.000000Z",
-            "status": { "id": 5, "nama": "Dibatalkan" },
-            "posisi": { "nama": "Cloud Engineer Intern" },
-            "perusahaan": { "nama": "Paragon Technology And Innovation", "lokasi": "KOTA ADM. JAKARTA SELATAN, DKI JAKARTA" }
-          }
-        ]
-      }
-    };
-
-    function doCheck() {
-      var email = (emailInput.value || '').trim().toLowerCase();
-      if (!email || email.indexOf('@') < 0) {
-        resultDiv.innerHTML = '<div style="padding:1rem;background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3);border-radius:10px;color:#f87171;font-size:0.85rem"><i class="ri-error-warning-line"></i> Harap masukkan alamat email yang valid.</div>';
-        return;
-      }
-
-      // If running on HTTPS (like GitHub Pages), HTTP localhost is blocked by browser Mixed Content policy.
-      if (window.location.protocol === 'https:') {
-        renderLocalRecord(email);
-        return;
-      }
-
-      resultDiv.innerHTML = '<div style="padding:1rem;background:rgba(167,139,250,0.1);border:1px solid rgba(167,139,250,0.3);border-radius:10px;color:var(--accent-purple);font-size:0.85rem;display:flex;align-items:center;gap:8px"><i class="ri-loader-4-line ri-spin"></i> Menghubungi FastAPI Proxy Backend (http://localhost:8000)...</div>';
-
-      var backendDone = false;
-      var timeoutTimer = setTimeout(function() {
-        if (!backendDone) {
-          backendDone = true;
-          renderLocalRecord(email);
-        }
-      }, 1000);
-
-      try {
-        fetch('http://127.0.0.1:8000/api/v1/check-status', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email: email })
-        })
-        .then(function(res) { return res.json(); })
-        .then(function(data) {
-          if (!data.success) throw new Error(data.message || 'Gagal antrian');
-          var jobId = data.jobId;
-          
-          resultDiv.innerHTML = '<div style="padding:1rem;background:rgba(34,211,238,0.1);border:1px solid rgba(34,211,238,0.3);border-radius:10px;color:var(--accent-cyan);font-size:0.85rem"><i class="ri-radar-line"></i> Job Antrian: <strong>'+jobId+'</strong>. Memantau status server...</div>';
-
-          var pollInterval = setInterval(function() {
-            fetch('http://127.0.0.1:8000/api/v1/check-status/jobs/' + jobId)
-            .then(function(r) { return r.json(); })
-            .then(function(jobData) {
-              if (jobData.status === 'completed' || jobData.status === 'failed') {
-                clearInterval(pollInterval);
-                if (!backendDone) { backendDone = true; clearTimeout(timeoutTimer); renderLocalRecord(email); }
-              }
-            })
-            .catch(function() {
-              clearInterval(pollInterval);
-              if (!backendDone) { backendDone = true; clearTimeout(timeoutTimer); renderLocalRecord(email); }
-            });
-          }, 1500);
-        })
-        .catch(function() {
-          if (!backendDone) { backendDone = true; clearTimeout(timeoutTimer); renderLocalRecord(email); }
-        });
-      } catch (e) {
-        if (!backendDone) { backendDone = true; clearTimeout(timeoutTimer); renderLocalRecord(email); }
-      }
-    }
-
-    function renderLocalRecord(email) {
-      var record = REAL_KEMNAKER_DATA[email];
-      if (!record) {
-        resultDiv.innerHTML = '<div style="background:var(--bg-body);border:1px solid var(--border-color);border-radius:12px;padding:1.25rem;margin-top:1rem"><div style="font-weight:700;color:var(--text-primary);margin-bottom:0.4rem"><i class="ri-information-line"></i> Data Pendaftaran Email: '+email+'</div><div style="font-size:0.82rem;color:var(--text-sub);line-height:1.5">Email ini tidak terdaftar di sampel cache atau memiliki 0 pendaftaran aktif di MagangHub Kemnaker Batch 1.</div></div>';
-        return;
-      }
-
-      var h = '<div style="background:var(--bg-body);border:1px solid var(--border-color);border-radius:12px;padding:1.25rem;margin-top:1rem">';
-      h += '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;padding-bottom:0.75rem;border-bottom:1px solid var(--border-color)">';
-      h += '<div><div style="font-weight:800;font-size:1.02rem;color:var(--text-primary)"><i class="ri-user-check-line"></i> Hasil Verifikasi Kemnaker API</div>';
-      h += '<div style="font-size:0.78rem;color:var(--text-muted)">'+record.email+' • Total Ditemukan: '+record.total+' Pendaftaran</div></div>';
-      h += '<span style="font-size:0.72rem;font-weight:700;padding:4px 10px;border-radius:20px;background:rgba(52,211,153,0.15);color:var(--accent-green);border:1px solid rgba(52,211,153,0.3)">Real Kemnaker Data</span></div>';
-
-      h += '<div style="display:flex;flex-direction:column;gap:0.85rem">';
-      record.registrations.forEach(function(reg, idx) {
-        var statusId = reg.status.id;
-        var statusName = reg.status.nama;
-        var statusBg = statusId === 2 ? 'rgba(52,211,153,0.15)' : (statusId === 4 ? 'rgba(34,211,238,0.15)' : 'rgba(239,68,68,0.15)');
-        var statusColor = statusId === 2 ? 'var(--accent-green)' : (statusId === 4 ? 'var(--accent-cyan)' : '#f87171');
-        var statusBorder = statusId === 2 ? 'rgba(52,211,153,0.3)' : (statusId === 4 ? 'rgba(34,211,238,0.3)' : 'rgba(239,68,68,0.3)');
-
-        var formattedDate = reg.tanggal_daftar.split('T')[0];
-
-        h += '<div style="background:var(--bg-card);border:1px solid '+statusBorder+';border-radius:10px;padding:1rem">';
-        h += '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.4rem">';
-        h += '<span style="font-size:0.75rem;font-weight:700;color:'+statusColor+';padding:3px 10px;border-radius:6px;background:'+statusBg+';border:1px solid '+statusBorder+'">'+statusName+'</span>';
-        h += '<span style="font-size:0.75rem;color:var(--text-muted)">Daftar: '+formattedDate+'</span>';
-        h += '</div>';
-
-        h += '<h4 style="font-size:0.95rem;font-weight:800;color:var(--text-primary);margin-bottom:0.2rem">Pilihan '+(idx+1)+': '+reg.posisi.nama+'</h4>';
-        h += '<div style="font-size:0.82rem;font-weight:600;color:var(--accent-purple)"><i class="ri-building-line"></i> '+reg.perusahaan.nama+'</div>';
-        h += '<div style="font-size:0.75rem;color:var(--text-muted);margin-top:2px"><i class="ri-map-pin-line"></i> '+reg.perusahaan.lokasi+'</div>';
-        h += '</div>';
-      });
-
-      h += '</div></div>';
-      resultDiv.innerHTML = h;
     }
   })();
   </script>

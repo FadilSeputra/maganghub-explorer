@@ -29,56 +29,7 @@ PREMIUM_TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjcxMGY5ZGI3LTQwYT
 # In-Memory Jobs & Cache
 jobs_db = {}
 
-# Official Scraped & Verified Data Store
-VERIFIED_APPLICANT_CACHE = {
-    "adutya37@gmail.com": {
-        "email": "adutya37@gmail.com",
-        "total": 3,
-        "registrations": [
-            {
-                "id_peserta": "019f932f-57d2-71ae-bf6e-2c4b54032f31",
-                "tanggal_daftar": "2026-07-24T08:13:01.000000Z",
-                "status": {"id": 4, "nama": "Diterima di Perusahaan Lain"},
-                "posisi": {"nama": "IT Application Delivery Intern - Information Technology"},
-                "perusahaan": {"nama": "Perusahaan Perseroan (Persero) PT. Bank Mandiri", "lokasi": "KOTA ADM. JAKARTA SELATAN, DKI JAKARTA"}
-            },
-            {
-                "id_peserta": "019f9026-69a7-7314-9303-11553665fed8",
-                "tanggal_daftar": "2026-07-23T18:04:24.000000Z",
-                "status": {"id": 2, "nama": "Diterima"},
-                "posisi": {"nama": "Solution Architect Intern"},
-                "perusahaan": {"nama": "Sinergi Informatika Semen Indonesia", "lokasi": "KOTA ADM. JAKARTA SELATAN, DKI JAKARTA"}
-            },
-            {
-                "id_peserta": "019f8c14-2a79-70f5-a3b2-3ed521f6f2d1",
-                "tanggal_daftar": "2026-07-22T23:05:59.000000Z",
-                "status": {"id": 5, "nama": "Dibatalkan"},
-                "posisi": {"nama": "Cloud Engineer Intern"},
-                "perusahaan": {"nama": "Paragon Technology And Innovation", "lokasi": "KOTA ADM. JAKARTA SELATAN, DKI JAKARTA"}
-            }
-        ]
-    },
-    "nendaseputra@gmail.com": {
-        "email": "nendaseputra@gmail.com",
-        "total": 2,
-        "registrations": [
-            {
-                "id_peserta": "019f9026-69a7-7314-9303-11553665fed8",
-                "tanggal_daftar": "2026-07-23T18:04:24.000000Z",
-                "status": {"id": 2, "nama": "Diterima"},
-                "posisi": {"nama": "Solution Architect Intern"},
-                "perusahaan": {"nama": "PT Sinergi Informatika Semen Indonesia (SISI)", "lokasi": "KOTA ADM. JAKARTA SELATAN, DKI JAKARTA"}
-            },
-            {
-                "id_peserta": "019f932f-57d2-71ae-bf6e-2c4b54032f31",
-                "tanggal_daftar": "2026-07-24T08:13:01.000000Z",
-                "status": {"id": 4, "nama": "Diterima di Perusahaan Lain"},
-                "posisi": {"nama": "IT Application Delivery Intern - Information Technology"},
-                "perusahaan": {"nama": "PT Bank Mandiri (Persero) Tbk", "lokasi": "KOTA ADM. JAKARTA SELATAN, DKI JAKARTA"}
-            }
-        ]
-    }
-}
+VERIFIED_APPLICANT_CACHE = {}
 
 STATISTICS_CACHE = {
     "lowonganAktif": 28455,
