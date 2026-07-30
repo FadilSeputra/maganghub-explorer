@@ -117,39 +117,58 @@
     </div>
   </div>
 
-  <!-- Modal Pantau Status Lamaran Saya -->
+  <!-- Modal Info Portal Resmi & Timeline (100% Clean & Honest) -->
   <div class="modal-overlay" id="status-modal-overlay">
-    <div class="modal-card" style="max-width:620px">
+    <div class="modal-card" style="max-width:600px">
       <div class="modal-header">
-        <span style="font-size:.85rem;font-weight:700;color:var(--accent-purple);text-transform:uppercase"><i class="ri-radar-line"></i> Tracker Status & Peluang Lamaran Saya</span>
+        <span style="font-size:.85rem;font-weight:700;color:var(--accent-cyan);text-transform:uppercase"><i class="ri-shield-check-line"></i> Timeline & Verifikasi Resmi Kemnaker</span>
         <button class="modal-close-btn" id="status-modal-close"><i class="ri-close-line"></i></button>
       </div>
       <div class="modal-body" style="padding:1.5rem">
-        <p style="font-size:0.88rem;color:var(--text-sub);margin-bottom:1rem;line-height:1.5">
-          Pantau progres seleksi & analisis peluang lolos lamaran Anda berdasarkan data penutupan pendaftaran MagangHub Kemnaker:
-        </p>
+        <div style="padding:1rem;background:rgba(34,211,238,0.08);border:1px solid rgba(34,211,238,0.2);border-radius:12px;margin-bottom:1.25rem;line-height:1.5;font-size:0.88rem;color:var(--text-sub)">
+          <div style="font-weight:700;color:var(--accent-cyan);margin-bottom:0.4rem;display:flex;align-items:center;gap:6px">
+            <i class="ri-lock-2-line"></i> Privasi Data Terlindungi (UU PDP)
+          </div>
+          Status kelulusan & verifikasi berkas individu dilindungi oleh Kemnaker RI dan <strong>hanya dapat diakses secara resmi melalui akun SSO Kemnaker Anda sendiri</strong>.
+        </div>
 
-        <div style="display:flex;flex-direction:column;gap:0.75rem;margin-bottom:1.25rem">
-          <div style="display:flex;gap:0.5rem">
-            <input type="email" id="input-status-email" class="search-input" value="nendaseputra@gmail.com" placeholder="Ketik email terdaftar MagangHub Anda..." style="flex:1" />
-            <button id="btn-check-email-status" class="btn-apply" style="padding:0 1.25rem;border:none;cursor:pointer;background:linear-gradient(135deg,var(--accent-purple),#7c3aed)"><i class="ri-search-line"></i> Muat Progres Saya</button>
+        <h4 style="font-size:0.95rem;font-weight:800;color:var(--text-primary);margin-bottom:0.75rem"><i class="ri-calendar-event-line"></i> Jadwal Resmi Seleksi MagangHub 2026</h4>
+        
+        <div style="display:flex;flex-direction:column;gap:0.75rem;margin-bottom:1.5rem">
+          <div style="background:var(--bg-body);border:1px solid var(--border-color);border-radius:10px;padding:0.85rem">
+            <div style="font-size:0.75rem;font-weight:700;color:var(--text-muted);margin-bottom:2px">FASE 2 (SELESAI)</div>
+            <div style="font-weight:700;color:var(--text-primary);font-size:0.9rem">Pendaftaran Peserta</div>
+            <div style="font-size:0.8rem;color:var(--text-sub)">15 Juli – 28 Juli 2026 (Telah Ditutup)</div>
+          </div>
+
+          <div style="background:rgba(167,139,250,0.1);border:1px solid rgba(167,139,250,0.3);border-radius:10px;padding:0.85rem">
+            <div style="font-size:0.75rem;font-weight:700;color:var(--accent-purple);margin-bottom:2px">FASE 3 (BERLANGSUNG SAAT INI)</div>
+            <div style="font-weight:700;color:var(--text-primary);font-size:0.9rem">Rekrutmen & Pengusulan Peserta oleh Perusahaan / BUMN</div>
+            <div style="font-size:0.8rem;color:var(--text-sub)">28 Juli – 5 Agustus 2026</div>
+            <div style="font-size:0.78rem;color:var(--text-primary);margin-top:0.4rem;font-style:italic">
+              HRD Perusahaan sedang menyeleksi berkas & melakukan wawancara/assessment calon peserta.
+            </div>
+          </div>
+
+          <div style="background:var(--bg-body);border:1px solid var(--border-color);border-radius:10px;padding:0.85rem">
+            <div style="font-size:0.75rem;font-weight:700;color:var(--accent-green);margin-bottom:2px">FASE 4 (PENGUMUMAN FINAL)</div>
+            <div style="font-weight:700;color:var(--text-primary);font-size:0.9rem">Seleksi Nasional & Pengumuman Peserta MagangHub</div>
+            <div style="font-size:0.8rem;color:var(--text-sub)">6 Agustus – 7 Agustus 2026</div>
           </div>
         </div>
 
-        <div id="status-result-container"></div>
+        <a href="https://maganghub.kemnaker.go.id" target="_blank" rel="noopener" class="btn-apply" style="display:flex;align-items:center;justify-content:center;gap:6px;width:100%;padding:12px;font-size:0.9rem;text-decoration:none;border-radius:10px">
+          <i class="ri-external-link-line"></i> Buka Portal Resmi MagangHub Kemnaker
+        </a>
       </div>
     </div>
   </div>
 
-  <!-- Inline: Status Checker wiring (independent of jobs.js load) -->
   <script>
   (function() {
     var btn = document.getElementById('btn-status-checker');
     var overlay = document.getElementById('status-modal-overlay');
     var closeBtn = document.getElementById('status-modal-close');
-    var checkBtn = document.getElementById('btn-check-email-status');
-    var emailInput = document.getElementById('input-status-email');
-    var resultDiv = document.getElementById('status-result-container');
 
     if (btn && overlay) {
       btn.addEventListener('click', function() { overlay.classList.add('active'); });
@@ -157,66 +176,6 @@
     if (closeBtn && overlay) {
       closeBtn.addEventListener('click', function() { overlay.classList.remove('active'); });
       overlay.addEventListener('click', function(e) { if (e.target === overlay) overlay.classList.remove('active'); });
-    }
-    if (checkBtn && emailInput) {
-      checkBtn.addEventListener('click', doCheck);
-      emailInput.addEventListener('keypress', function(e) { if (e.key === 'Enter') doCheck(); });
-    }
-
-    function doCheck() {
-      var email = (emailInput.value || '').trim().toLowerCase();
-      if (!email || email.indexOf('@') < 0) {
-        resultDiv.innerHTML = '<div style="padding:1rem;background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3);border-radius:10px;color:#f87171;font-size:0.85rem"><i class="ri-error-warning-line"></i> Harap masukkan alamat email yang valid.</div>';
-        return;
-      }
-      var DB = {
-        'adutya37@gmail.com': { name:'ADITYA', nim:'S1 Teknik Informatika / Sistem Informasi', apps:[
-          { title:'IT Infrastructure Intern - Information Technology', company:'PT Bank Mandiri (Persero) Tbk', status:'ACCEPTED', label:'\u{1F7E2} DITERIMA / LOLOS SELEKSI BERKAS', stage:'Tahap Online Assessment & HR Review', date:'Rabu, 5 Agustus 2026 (14:00 WIB)', note:'Selamat! Berkas pendaftaran Anda dinyatakan LOLOS seleksi administrasi BUMN Bank Mandiri.' },
-          { title:'Cloud Engineer Intern', company:'PT Paragon Technology And Innovation', status:'PENDING', label:'\u{1F7E1} SEDANG DIPROSES / VERIFIKASI BERKAS', stage:'Review Kualifikasi Berkas oleh HRD Paragon', date:'Estimasi Pengumuman: 1 - 5 Agustus 2026', note:'Berkas lamaran Anda sedang dalam tahap verifikasi kualifikasi tim Recruitment Paragon.' }
-        ]},
-        'nendaseputra@gmail.com': { name:'NENDA ALFADIL SEPUTRA', nim:'S1 Teknik Informatika (Bangkit Cloud Cohort)', apps:[
-          { title:'Solution Architect Intern', company:'PT Sinergi Informatika Semen Indonesia (SISI)', status:'ACCEPTED', label:'\u{1F7E2} DITERIMA / LOLOS SELEKSI BERKAS', stage:'Tahap Wawancara User & Direksi', date:'Senin, 3 Agustus 2026 (09:00 WIB)', note:'Selamat! Berkas kualifikasi S1 TI & Bangkit Cloud Anda dinyatakan LOLOS seleksi tahap I oleh tim Recruitment SISI.' },
-          { title:'IT Application Delivery Intern - Information Technology', company:'PT Bank Mandiri (Persero) Tbk', status:'ACCEPTED', label:'\u{1F7E2} DITERIMA / LOLOS SELEKSI BERKAS', stage:'Tahap Online Assessment & HR Review', date:'Rabu, 5 Agustus 2026 (10:00 WIB)', note:'Selamat! Berkas Anda dinyatakan LOLOS verifikasi BUMN Bank Mandiri. Tautan tes assessment telah dikirim ke email.' }
-        ]},
-        'nenda@gmail.com': { name:'NENDA ALFADIL SEPUTRA', nim:'S1 Teknik Informatika (Bangkit Cloud Cohort)', apps:[
-          { title:'Solution Architect Intern', company:'PT Sinergi Informatika Semen Indonesia (SISI)', status:'ACCEPTED', label:'\u{1F7E2} DITERIMA / LOLOS SELEKSI BERKAS', stage:'Tahap Wawancara User & Direksi', date:'Senin, 3 Agustus 2026 (09:00 WIB)', note:'Selamat! Berkas kualifikasi S1 TI & Bangkit Cloud Anda dinyatakan LOLOS seleksi tahap I oleh tim Recruitment SISI.' },
-          { title:'IT Application Delivery Intern - Information Technology', company:'PT Bank Mandiri (Persero) Tbk', status:'ACCEPTED', label:'\u{1F7E2} DITERIMA / LOLOS SELEKSI BERKAS', stage:'Tahap Online Assessment & HR Review', date:'Rabu, 5 Agustus 2026 (10:00 WIB)', note:'Selamat! Berkas Anda dinyatakan LOLOS verifikasi BUMN Bank Mandiri. Tautan tes assessment telah dikirim ke email.' }
-        ]},
-        'fadil@gmail.com': { name:'FADIL SEPUTRA (TEMAN DUO)', nim:'S1 Teknik Informatika', apps:[
-          { title:'Solution Architect Intern', company:'PT Sinergi Informatika Semen Indonesia (SISI)', status:'ACCEPTED', label:'\u{1F7E2} DITERIMA / LOLOS SELEKSI BERKAS', stage:'Tahap Wawancara User', date:'Senin, 3 Agustus 2026 (10:00 WIB)', note:'Selamat! Berkas Anda dinyatakan LOLOS verifikasi awal SISI.' },
-          { title:'IT Application Delivery Intern - Information Technology', company:'PT Bank Mandiri (Persero) Tbk', status:'ACCEPTED', label:'\u{1F7E2} DITERIMA / LOLOS SELEKSI BERKAS', stage:'Tahap Online Assessment', date:'Rabu, 5 Agustus 2026 (11:00 WIB)', note:'Selamat! Berkas Anda dinyatakan LOLOS verifikasi Bank Mandiri.' }
-        ]}
-      };
-      var rec = DB[email];
-      if (!rec) {
-        rec = { name: email.split('@')[0].toUpperCase(), nim:'Peserta MagangHub Kemnaker', apps:[
-          { title:'Lowongan Magang Pilihan Slot 1', company:'PT Perusahaan BUMN / Swasta Pilihan', status:'PENDING', label:'\u{1F7E1} SEDANG DIPROSES / VERIFIKASI BERKAS', stage:'Pengumuman Tahap I (Dalam Proses Review HRD)', date:'Estimasi Pengumuman: 1 - 7 Agustus 2026', note:'Berkas pendaftaran Anda telah diterima sistem MagangHub Kemnaker dan saat ini sedang dalam proses verifikasi kualifikasi oleh HRD Perusahaan.' },
-          { title:'Lowongan Magang Pilihan Slot 2', company:'PT Perusahaan BUMN / Swasta Pilihan', status:'PENDING', label:'\u{1F7E1} SEDANG DIPROSES / VERIFIKASI BERKAS', stage:'Pengumuman Tahap I (Dalam Proses Review HRD)', date:'Estimasi Pengumuman: 1 - 7 Agustus 2026', note:'Berkas Anda sedang dalam verifikasi HRD.' }
-        ]};
-      }
-      var h = '<div style="background:var(--bg-body);border:1px solid var(--border-color);border-radius:12px;padding:1.25rem;margin-top:1rem">';
-      h += '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;padding-bottom:0.75rem;border-bottom:1px solid var(--border-color)">';
-      h += '<div><div style="font-weight:800;font-size:1.05rem;color:var(--text-primary)"><i class="ri-user-smile-line"></i> '+rec.name+'</div>';
-      h += '<div style="font-size:0.78rem;color:var(--text-muted)">'+email+' \u2022 '+rec.nim+'</div></div>';
-      h += '<span style="font-size:0.75rem;font-weight:700;padding:4px 10px;border-radius:20px;background:rgba(52,211,153,0.15);color:var(--accent-green);border:1px solid rgba(52,211,153,0.3)">Portal Kemnaker Verified</span></div>';
-      h += '<div style="display:flex;flex-direction:column;gap:1rem">';
-      rec.apps.forEach(function(a,i) {
-        var ok = a.status === 'ACCEPTED';
-        var bg = ok ? 'rgba(52,211,153,0.1)' : 'rgba(245,158,11,0.1)';
-        var bd = ok ? 'rgba(52,211,153,0.3)' : 'rgba(245,158,11,0.3)';
-        var cl = ok ? 'var(--accent-green)' : '#f59e0b';
-        h += '<div style="background:var(--bg-card);border:1px solid '+bd+';border-radius:10px;padding:1rem">';
-        h += '<div style="font-size:0.75rem;font-weight:700;color:'+cl+';margin-bottom:0.4rem;display:inline-block;padding:2px 8px;border-radius:6px;background:'+bg+'">'+a.label+'</div>';
-        h += '<h4 style="font-size:0.95rem;font-weight:800;margin-bottom:0.25rem;color:var(--text-primary)">Slot '+(i+1)+': '+a.title+'</h4>';
-        h += '<div style="font-size:0.82rem;font-weight:600;color:var(--accent-cyan);margin-bottom:0.75rem"><i class="ri-building-line"></i> '+a.company+'</div>';
-        h += '<div style="font-size:0.8rem;background:var(--bg-body);padding:0.75rem;border-radius:8px;line-height:1.5;color:var(--text-sub)">';
-        h += '<div><strong>Tahap Saat Ini:</strong> '+a.stage+'</div>';
-        h += '<div><strong>Jadwal / Waktu:</strong> '+a.date+'</div>';
-        h += '<div style="margin-top:0.4rem;padding-top:0.4rem;border-top:1px dashed var(--border-color);font-style:italic;color:var(--text-primary)">"'+a.note+'"</div>';
-        h += '</div></div>';
-      });
-      h += '</div></div>';
-      resultDiv.innerHTML = h;
     }
   })();
   </script>
