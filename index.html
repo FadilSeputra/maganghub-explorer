@@ -199,39 +199,56 @@
         return;
       }
 
+      // If running on HTTPS (like GitHub Pages), HTTP localhost is blocked by browser Mixed Content policy.
+      if (window.location.protocol === 'https:') {
+        renderLocalRecord(email);
+        return;
+      }
+
       resultDiv.innerHTML = '<div style="padding:1rem;background:rgba(167,139,250,0.1);border:1px solid rgba(167,139,250,0.3);border-radius:10px;color:var(--accent-purple);font-size:0.85rem;display:flex;align-items:center;gap:8px"><i class="ri-loader-4-line ri-spin"></i> Menghubungi FastAPI Proxy Backend (http://localhost:8000)...</div>';
 
-      fetch('http://127.0.0.1:8000/api/v1/check-status', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: email })
-      })
-      .then(function(res) { return res.json(); })
-      .then(function(data) {
-        if (!data.success) throw new Error(data.message || 'Gagal antrian');
-        var jobId = data.jobId;
-        
-        resultDiv.innerHTML = '<div style="padding:1rem;background:rgba(34,211,238,0.1);border:1px solid rgba(34,211,238,0.3);border-radius:10px;color:var(--accent-cyan);font-size:0.85rem"><i class="ri-radar-line"></i> Job Antrian: <strong>'+jobId+'</strong>. Memantau status server...</div>';
+      var backendDone = false;
+      var timeoutTimer = setTimeout(function() {
+        if (!backendDone) {
+          backendDone = true;
+          renderLocalRecord(email);
+        }
+      }, 1000);
 
-        var pollInterval = setInterval(function() {
-          fetch('http://127.0.0.1:8000/api/v1/check-status/jobs/' + jobId)
-          .then(function(r) { return r.json(); })
-          .then(function(jobData) {
-            if (jobData.status === 'completed' || jobData.status === 'failed') {
+      try {
+        fetch('http://127.0.0.1:8000/api/v1/check-status', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: email })
+        })
+        .then(function(res) { return res.json(); })
+        .then(function(data) {
+          if (!data.success) throw new Error(data.message || 'Gagal antrian');
+          var jobId = data.jobId;
+          
+          resultDiv.innerHTML = '<div style="padding:1rem;background:rgba(34,211,238,0.1);border:1px solid rgba(34,211,238,0.3);border-radius:10px;color:var(--accent-cyan);font-size:0.85rem"><i class="ri-radar-line"></i> Job Antrian: <strong>'+jobId+'</strong>. Memantau status server...</div>';
+
+          var pollInterval = setInterval(function() {
+            fetch('http://127.0.0.1:8000/api/v1/check-status/jobs/' + jobId)
+            .then(function(r) { return r.json(); })
+            .then(function(jobData) {
+              if (jobData.status === 'completed' || jobData.status === 'failed') {
+                clearInterval(pollInterval);
+                if (!backendDone) { backendDone = true; clearTimeout(timeoutTimer); renderLocalRecord(email); }
+              }
+            })
+            .catch(function() {
               clearInterval(pollInterval);
-              renderLocalRecord(email);
-            }
-          })
-          .catch(function() {
-            clearInterval(pollInterval);
-            renderLocalRecord(email);
-          });
-        }, 1500);
-      })
-      .catch(function(err) {
-        // Fallback to local real data cache if backend offline
-        renderLocalRecord(email);
-      });
+              if (!backendDone) { backendDone = true; clearTimeout(timeoutTimer); renderLocalRecord(email); }
+            });
+          }, 1500);
+        })
+        .catch(function() {
+          if (!backendDone) { backendDone = true; clearTimeout(timeoutTimer); renderLocalRecord(email); }
+        });
+      } catch (e) {
+        if (!backendDone) { backendDone = true; clearTimeout(timeoutTimer); renderLocalRecord(email); }
+      }
     }
 
     function renderLocalRecord(email) {
