@@ -68,5 +68,19 @@
     "date": "2026-07-27 23:41",
     "unique_jobs": 25651,
     "applicants": 316934
+  },
+  {
+    "run": 11,
+    "label": "Scraping Terbaru (2026-07-28 21:37)",
+    "date": "2026-07-28 21:37",
+    "unique_jobs": 27479,
+    "applicants": 369925
+  },
+  {
+    "run": 12,
+    "label": "Scraping Terbaru (2026-07-29 00:35)",
+    "date": "2026-07-29 00:35",
+    "unique_jobs": 28020,
+    "applicants": 398738
   }
 ]
